@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KartuSiswa" language="groovy" pageWidth="242" pageHeight="153" orientation="Landscape" columnWidth="242" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4e1a320d-04e7-4992-a9ef-edf5afb879b9">
+	<property name="ireport.zoom" value="3.4522712143931487"/>
+	<property name="ireport.x" value="92"/>
+	<property name="ireport.y" value="38"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     students.`nisn` AS students_nisn,
+     students.`name` AS students_name,
+     students.`gender` AS students_gender,
+     students.`classroom` AS students_classroom,
+     students.`address` AS students_address,
+     students.`photo` AS students_photo
+FROM
+     `students` students]]>
+	</queryString>
+	<field name="students_nisn" class="java.lang.String"/>
+	<field name="students_name" class="java.lang.String"/>
+	<field name="students_gender" class="java.lang.String"/>
+	<field name="students_classroom" class="java.lang.String"/>
+	<field name="students_address" class="java.lang.String"/>
+	<field name="students_photo" class="java.io.InputStream"/>
+	<detail>
+		<band height="153" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="242" height="153" backcolor="#FFFFFF" uuid="bc2b5d4b-7667-463d-8280-45607374092b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="242" height="35" backcolor="#0D47A1" uuid="e045434e-0853-4809-8086-45607374092b"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
+				<reportElement x="10" y="45" width="60" height="75" uuid="78b5a76e-0853-4809-8086-45607374092c"/>
+				<imageExpression><![CDATA[$F{students_photo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="-10" y="1" width="174" height="15" forecolor="#FFFFFF" uuid="d9e1e1e1-e1e1-e1e1-e1e1-e1e1e1e1e1e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KARTU PERPUSTAKAAN SISWA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="149" height="12" forecolor="#FFFFFF" uuid="d9e1e1e1-e1e1-e1e1-e1e1-e1e1e1e1e1e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SMK NEGERI 4 BOJONEGORO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="45" width="40" height="12" uuid="a1a1a1a1-a1a1-a1a1-a1a1-a1a1a1a1a1a1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="45" width="112" height="12" uuid="b1b1b1b1-b1b1-b1b1-b1b1-b1b1b1b1b1b1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{students_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="58" width="40" height="12" uuid="a2a2a2a2-a2a2-a2a2-a2a2-a2a2a2a2a2a2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NISN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="58" width="112" height="12" uuid="b2b2b2b2-b2b2-b2b2-b2b2-b2b2b2b2b2b2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{students_nisn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="70" width="40" height="12" uuid="a3a3a3a3-a3a3-a3a3-a3a3-a3a3a3a3a3a3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KELAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="71" width="112" height="12" uuid="b3b3b3b3-b3b3-b3b3-b3b3-b3b3b3b3b3b3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{students_classroom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="84" width="40" height="12" uuid="d6bc999e-756b-4ada-a99f-786c36891253"/>
+				<textElement verticalAlignment="Top">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALAMAT]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="120" y="84" width="112" height="36" uuid="d3d9089e-68d3-4304-83b2-c2a4aed4112c"/>
+				<textElement verticalAlignment="Top">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": " + $F{students_address}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="130" width="242" height="1" forecolor="#0D47A1" uuid="c1c1c1c1-c1c1-c1c1-c1c1-c1c1e1e1e1e1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="135" width="242" height="10" forecolor="#0D47A1" uuid="d1d1d1d1-d1d1-d1d1-d1d1-d1d1e1e1e1e1"/>
+				<textElement textAlignment="Center">
+					<font size="5" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Kartu ini merupakan identitas resmi anggota EduLibrary SMK Negeri 4 Bojonegoro]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="15" width="139" height="1" forecolor="#FFFFFF" uuid="6d53408e-573a-4ef7-bde3-b4fae5afa9a6"/>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="152" y="5" width="80" height="24" forecolor="#FFFFFF" uuid="60b38c1b-c0a4-4370-8f9e-f796bd97577d"/>
+			</rectangle>
+			<image>
+				<reportElement x="158" y="8" width="20" height="20" uuid="7bc9f661-84b0-4de5-b4d6-8e63aee7b96b"/>
+				<imageExpression><![CDATA["C:\\Users\\11 64\\OneDrive\\Documents\\NetBeansProjects\\library\\src\\image\\logoo.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="182" y="5" width="48" height="24" forecolor="#0D47A1" backcolor="#0D47A1" uuid="f1c09dd4-950c-4f07-bbf0-4e446a8a8b64"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="7" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[EduLibrary]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="45" width="60" height="1" backcolor="#0D47A1" uuid="66f17e0f-1c96-4672-817e-d7b8f96b4d48"/>
+			</line>
+			<line>
+				<reportElement x="10" y="119" width="60" height="1" backcolor="#0D47A1" uuid="9e4f2c9d-aecf-4040-87bb-1e6373d14afd"/>
+			</line>
+			<rectangle>
+				<reportElement x="0" y="145" width="242" height="8" backcolor="#0D47A1" uuid="100dba22-1ec7-40e2-a523-86c2b69e20f7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="80" y="116" width="162" height="2" forecolor="#0D47A1" backcolor="#0D47A1" uuid="351d2118-de9a-4f79-b293-0c26be5873c0"/>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>

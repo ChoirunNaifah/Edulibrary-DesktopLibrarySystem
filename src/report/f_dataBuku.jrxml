@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanBuku" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="73316cab-aefd-4abc-82ac-30b355dd9272">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="182"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ADMIN_NAME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+            books.`id` AS books_id,
+            books.`title` AS books_title,
+            books.`author` AS books_author,
+            books.`publisher` AS books_publisher,
+            books.`origin` AS books_origin,
+            books.`total_pages` AS books_total_pages,
+            book_items.`code` AS book_items_code,
+            categories.`id` AS categories_id,
+            categories.`name` AS categories_name
+        FROM books
+        INNER JOIN book_items ON books.`id` = book_items.`book_id`
+        INNER JOIN categories ON books.`category_id` = categories.`id`
+        ORDER BY books.`id` ASC]]>
+	</queryString>
+	<field name="books_id" class="java.lang.Integer"/>
+	<field name="books_title" class="java.lang.String"/>
+	<field name="books_author" class="java.lang.String"/>
+	<field name="books_publisher" class="java.lang.String"/>
+	<field name="books_origin" class="java.lang.String"/>
+	<field name="books_total_pages" class="java.lang.Integer"/>
+	<field name="book_items_code" class="java.lang.String"/>
+	<field name="categories_id" class="java.lang.Integer"/>
+	<field name="categories_name" class="java.lang.String"/>
+	<variable name="total_items_count" class="java.lang.Integer" resetType="Group" resetGroup="BookGroup" calculation="Count">
+		<variableExpression><![CDATA[$F{book_items_code}]]></variableExpression>
+	</variable>
+	<group name="BookGroup">
+		<groupExpression><![CDATA[$F{books_id}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField>
+					<reportElement x="0" y="0" width="50" height="20" uuid="4e9cc418-ac40-4fdd-a911-2e4309e21c48"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_id}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="50" y="0" width="180" height="20" uuid="ffc8f02d-c0c1-43e9-905b-89d5c5097b83"/>
+					<box leftPadding="5">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_title}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="230" y="0" width="120" height="20" uuid="065d0146-4563-4d04-b7c7-95867d9e4a91"/>
+					<box leftPadding="5">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{categories_name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="350" y="0" width="110" height="20" uuid="f79cf46a-1284-4a5f-81fa-c39e5d5bf857"/>
+					<box leftPadding="5">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_author}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="460" y="0" width="110" height="20" uuid="f6b4d5af-c1af-4e9a-915f-e657b5e70acc"/>
+					<box leftPadding="5">
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_publisher}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="570" y="0" width="70" height="20" uuid="cf9a9078-a631-4c39-965c-bb7596f3faa0"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_origin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="640" y="0" width="60" height="20" uuid="2acecb65-add8-48ef-aaf5-7f6f92986105"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{books_total_pages}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="700" y="0" width="52" height="20" uuid="c52ea56d-6d29-471d-8a60-f5271090a81e"/>
+					<box>
+						<pen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$V{total_items_count}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="90">
+			<staticText>
+				<reportElement x="0" y="0" width="752" height="30" uuid="94d327b3-71e8-4ccd-b71c-84bd6ab9fc89"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DATA BUKU EDULIBRARY SMKN 4 BOJONEGORO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="752" height="20" uuid="0fe97b3a-ee67-435f-8cb8-2509a5e0204e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Dicetak pada : " +
+                    new java.text.SimpleDateFormat("dd MMMM yyyy HH:mm",
+                    new java.util.Locale("id")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="50" width="752" height="20" uuid="89381772-ab36-41a0-895c-b197e686cba7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Dicetak oleh : " + $P{ADMIN_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="50" height="30" backcolor="#CCCCCC" uuid="4ed45d5f-0d37-4c50-a1ba-5391849f6714"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="50" y="0" width="180" height="30" backcolor="#CCCCCC" uuid="06087f91-88e6-4774-a5d3-6ac5f9941a0b"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Judul Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="230" y="0" width="120" height="30" backcolor="#CCCCCC" uuid="4e6642da-d108-4f5c-9777-afbf58711fdc"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kategori]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="0" width="110" height="30" backcolor="#CCCCCC" uuid="eeff4174-52ff-4da6-ba97-cec0be0df753"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Penulis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="0" width="110" height="30" backcolor="#CCCCCC" uuid="a8a24922-aadb-4ab9-aa61-976ef98b4adb"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Penerbit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="570" y="0" width="70" height="30" backcolor="#CCCCCC" uuid="bb09bf91-b1fa-4a8d-b656-5b42d8edf3d4"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Asal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="640" y="0" width="60" height="30" backcolor="#CCCCCC" uuid="ec791656-960a-4608-99a0-1fc969318d06"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Halaman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="700" y="0" width="52" height="30" backcolor="#CCCCCC" uuid="972122d1-1a97-4920-922f-9e95518f3742"/>
+				<box>
+					<pen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah Buku]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

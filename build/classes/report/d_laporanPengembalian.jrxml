@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="97acc96d-1d4a-406c-a520-beaefb20a862">
+	<property name="ireport.zoom" value="2.8531167061100082"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="81"/>
+	<parameter name="PERIODE_TEXT" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     admins.`id` AS admins_id,
+     admins.`name` AS admins_name,
+     admins.`password` AS admins_password,
+     book_items.`code` AS book_items_code,
+     book_items.`book_id` AS book_items_book_id,
+     book_items.`status` AS book_items_status,
+     books.`id` AS books_id,
+     books.`title` AS books_title,
+     books.`author` AS books_author,
+     books.`publisher` AS books_publisher,
+     books.`origin` AS books_origin,
+     books.`total_pages` AS books_total_pages,
+     books.`cover` AS books_cover,
+     books.`category_id` AS books_category_id,
+     borrowing_details.`id` AS borrowing_details_id,
+     borrowing_details.`borrowing_id` AS borrowing_details_borrowing_id,
+     borrowing_details.`book_code` AS borrowing_details_book_code,
+     borrowings.`id` AS borrowings_id,
+     borrowings.`student_nisn` AS borrowings_student_nisn,
+     DATE_FORMAT(borrowings.`borrowed_at`, '%d %M %Y') AS borrowings_borrowed_at,
+     DATE_FORMAT(borrowings.`returned_at`, '%d %M %Y') AS borrowings_returned_at,
+     borrowings.`status` AS borrowings_status,
+     borrowings.`created_at` AS borrowings_created_at,
+     categories.`id` AS categories_id,
+     categories.`name` AS categories_name,
+     returns.`id` AS returns_id,
+     returns.`borrowing_id` AS returns_borrowing_id,
+     returns.`returned_at` AS returns_returned_at,
+     returns.`charge` AS returns_charge,
+     returns.`status` AS returns_status,
+     returns.`created_at` AS returns_created_at,
+     students.`nisn` AS students_nisn,
+     students.`name` AS students_name,
+     students.`password` AS students_password,
+     students.`classroom` AS students_classroom,
+     students.`phone_number` AS students_phone_number,
+     students.`address` AS students_address
+FROM
+     `books` books INNER JOIN `book_items` book_items ON books.`id` = book_items.`book_id`
+     INNER JOIN `borrowing_details` borrowing_details ON book_items.`code` = borrowing_details.`book_code`
+     INNER JOIN `borrowings` borrowings ON borrowing_details.`borrowing_id` = borrowings.`id`
+     INNER JOIN `returns` returns ON borrowings.`id` = returns.`borrowing_id`
+     INNER JOIN `students` students ON borrowings.`student_nisn` = students.`nisn`
+     INNER JOIN `categories` categories ON books.`category_id` = categories.`id`,
+     `admins` admins]]>
+	</queryString>
+	<field name="admins_id" class="java.lang.Integer"/>
+	<field name="admins_name" class="java.lang.String"/>
+	<field name="admins_password" class="java.lang.String"/>
+	<field name="book_items_code" class="java.lang.String"/>
+	<field name="book_items_book_id" class="java.lang.Integer"/>
+	<field name="book_items_status" class="java.lang.String"/>
+	<field name="books_id" class="java.lang.Integer"/>
+	<field name="books_title" class="java.lang.String"/>
+	<field name="books_author" class="java.lang.String"/>
+	<field name="books_publisher" class="java.lang.String"/>
+	<field name="books_origin" class="java.lang.String"/>
+	<field name="books_total_pages" class="java.lang.Integer"/>
+	<field name="books_cover" class="java.lang.Object"/>
+	<field name="books_category_id" class="java.lang.Integer"/>
+	<field name="borrowing_details_id" class="java.lang.Integer"/>
+	<field name="borrowing_details_borrowing_id" class="java.lang.Integer"/>
+	<field name="borrowing_details_book_code" class="java.lang.String"/>
+	<field name="borrowings_id" class="java.lang.Integer"/>
+	<field name="borrowings_student_nisn" class="java.lang.String"/>
+	<field name="borrowings_borrowed_at" class="java.lang.String"/>
+	<field name="borrowings_returned_at" class="java.lang.String"/>
+	<field name="borrowings_status" class="java.lang.String"/>
+	<field name="borrowings_created_at" class="java.sql.Timestamp"/>
+	<field name="categories_id" class="java.lang.Integer"/>
+	<field name="categories_name" class="java.lang.String"/>
+	<field name="returns_id" class="java.lang.Integer"/>
+	<field name="returns_borrowing_id" class="java.lang.Integer"/>
+	<field name="returns_returned_at" class="java.sql.Date"/>
+	<field name="returns_charge" class="java.lang.Long"/>
+	<field name="returns_status" class="java.lang.String"/>
+	<field name="returns_created_at" class="java.sql.Timestamp"/>
+	<field name="students_nisn" class="java.lang.String"/>
+	<field name="students_name" class="java.lang.String"/>
+	<field name="students_password" class="java.lang.String"/>
+	<field name="students_classroom" class="java.lang.String"/>
+	<field name="students_phone_number" class="java.lang.String"/>
+	<field name="students_address" class="java.lang.String"/>
+	<title>
+		<band height="115">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="842" height="125" forecolor="#0D47A1" backcolor="#0D47A1" uuid="8adc2bf7-86c7-4daf-ab36-04b2598e5634"/>
+				<staticText>
+					<reportElement x="30" y="20" width="595" height="40" forecolor="#FFFFFF" uuid="f7be2388-654c-423f-b7b2-afe1397d5f50"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="28" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LAPORAN PENGEMBALIAN EDULIBRARY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="65" width="235" height="20" forecolor="#BDC3C7" uuid="fac871c1-5393-4349-a53b-80f5b18b5b21"/>
+					<textElement>
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Sistem Manajemen Perpustakaan Digital]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="85" y="95" width="180" height="20" forecolor="#3498DB" uuid="05b00e52-ed91-464d-9eca-9bb98a3d8ce5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{PERIODE_TEXT}]]></textFieldExpression>
+				</textField>
+				<rectangle radius="60">
+					<reportElement x="670" y="13" width="160" height="102" forecolor="#FFFFFF" uuid="e6f6359c-15c7-419e-a750-b9b6feb04908"/>
+				</rectangle>
+				<image>
+					<reportElement x="708" y="20" width="90" height="85" uuid="1b3c3116-0677-4763-89b5-c43effa360ed"/>
+					<imageExpression><![CDATA["C:\\Users\\11 64\\OneDrive\\Documents\\NetBeansProjects\\library\\src\\image\\logoo.jpeg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="30" y="95" width="55" height="20" forecolor="#BDC3C7" uuid="87273cac-c56c-4893-86ca-c663c557a7dc"/>
+					<textElement>
+						<font size="12" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Periode :]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="35">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="45" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="b8f9c2d1-3e5a-4f7b-9d6c-1a2b3c4d5e6a"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Pengembalian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="45" y="0" width="35" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="a74cf8e2-62fb-4a5a-b0ef-75b61cf8ecba"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Peminjaman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="80" y="0" width="65" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="a74cf8e2-62fb-4a5a-b0ef-75b61cf8ecbb"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NISN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="145" y="0" width="95" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="4927aecd-2a12-4ffd-98ed-9406183efcd7"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA SISWA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="240" y="0" width="45" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="428e0387-7787-4b11-b81d-4b77e7052026"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KELAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="285" y="0" width="75" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="45ed6bf4-65e3-4571-a696-c6ff15d42023"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KODE BUKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="360" y="0" width="120" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="45ed6bf4-65e3-4571-a696-c6ff15d42024"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUDUL BUKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="0" width="85" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="02461342-204e-40fa-9ea9-06da4ea5dda9"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TENGGAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="565" y="0" width="85" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="fe28347c-163b-47f3-a748-11e991be18ac"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dikembalikan Pada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="710" y="0" width="93" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="b8f9c2d1-3e5a-4f7b-9d6c-1a2b3c4d5e6f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="650" y="0" width="60" height="30" forecolor="#FFFFFF" backcolor="#2A89F8" uuid="ced03d9a-5b6f-4b5e-a1bb-f9e5e2d1c3a8"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Denda]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="45" height="24" uuid="c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2a"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{returns_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="45" y="0" width="35" height="24" uuid="91732432-b066-4304-b49a-8639290aa1d1"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrowings_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="0" width="65" height="24" uuid="91732432-b066-4304-b49a-8639290aa1d6"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{students_nisn}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="145" y="0" width="95" height="24" uuid="3ae53e05-9691-46ce-98be-62e85f9962ba"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{students_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="240" y="0" width="45" height="24" uuid="c0bdca82-7e4a-4eed-aef0-6ad952014b06"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{students_classroom}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="285" y="0" width="75" height="24" uuid="cfb6d581-b92e-4ef6-b157-37151c0bf862"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_items_code}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="360" y="0" width="120" height="24" uuid="cfb6d581-b92e-4ef6-b157-37151c0bf861"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{books_title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement x="565" y="0" width="85" height="24" uuid="8fc0a053-b561-4113-a564-9435b06db114"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{returns_returned_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="710" y="0" width="93" height="24" uuid="c7d8e9f0-1a2b-3c4d-5e6f-7a8b9c0d1e2f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrowings_status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement x="480" y="0" width="85" height="24" forecolor="#C0392B" uuid="e6bee9c1-39e0-44a7-aa07-4527da1d4dc1"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{borrowings_returned_at}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="650" y="0" width="60" height="24" uuid="a9d5c1f2-8e4b-4c3d-9f7a-2b8e6d3c5a1b"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#EEEEEE"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{returns_charge}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="10" width="762" height="20" backcolor="#F8F9F9" uuid="233bc906-394e-446a-9cc3-25e67fdbf8bc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Halaman "+$V{PAGE_NUMBER}+" dari"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="762" y="10" width="40" height="20" backcolor="#F8F9F9" uuid="27be62f1-d98a-4618-b24e-b96718cc4bf2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

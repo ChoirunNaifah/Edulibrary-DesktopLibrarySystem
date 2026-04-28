@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="302" pageHeight="500" columnWidth="262" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b054b928-1eea-4918-931f-c925bb33aba8">
+	<property name="ireport.zoom" value="2.1435888100000824"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="721759e7-b66c-4d47-860e-90a224cb0d44"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     students.`nisn` AS students_nisn,
+     students.`name` AS students_name,
+     students.`password` AS students_password,
+     students.`classroom` AS students_classroom,
+     students.`phone_number` AS students_phone_number,
+     students.`address` AS students_address,
+     categories.`id` AS categories_id,
+     categories.`name` AS categories_name,
+     borrowings.`id` AS borrowings_id,
+     borrowings.`student_nisn` AS borrowings_student_nisn,
+     borrowings.`borrowed_at` AS borrowings_borrowed_at,
+     borrowings.`returned_at` AS borrowings_returned_at,
+     borrowings.`status` AS borrowings_status,
+     borrowings.`created_at` AS borrowings_created_at,
+     borrowing_details.`id` AS borrowing_details_id,
+     borrowing_details.`borrowing_id` AS borrowing_details_borrowing_id,
+     borrowing_details.`book_code` AS borrowing_details_book_code,
+     books.`id` AS books_id,
+     books.`title` AS books_title,
+     books.`author` AS books_author,
+     books.`publisher` AS books_publisher,
+     books.`origin` AS books_origin,
+     books.`total_pages` AS books_total_pages,
+     books.`cover` AS books_cover,
+     books.`category_id` AS books_category_id,
+     book_items.`code` AS book_items_code,
+     book_items.`book_id` AS book_items_book_id,
+     book_items.`status` AS book_items_status,
+     admins.`id` AS admins_id,
+     categories.`id` AS categories_id,
+     categories.`name` AS categories_name,
+     admins.`id` AS admins_id,
+     admins.`name` AS admins_name,
+     admins.`username` AS admins_username,
+     admins.`password` AS admins_password
+FROM
+     `students` students INNER JOIN `borrowings` borrowings ON students.`nisn` = borrowings.`student_nisn`
+     INNER JOIN `borrowing_details` borrowing_details ON borrowings.`id` = borrowing_details.`borrowing_id`
+     INNER JOIN `book_items` book_items ON borrowing_details.`book_code` = book_items.`code`
+     INNER JOIN `books` books ON book_items.`book_id` = books.`id`
+     INNER JOIN `categories` categories ON books.`category_id` = categories.`id`,
+     `admins` admins]]>
+	</queryString>
+	<field name="students_nisn" class="java.lang.String"/>
+	<field name="students_name" class="java.lang.String"/>
+	<field name="students_password" class="java.lang.String"/>
+	<field name="students_classroom" class="java.lang.String"/>
+	<field name="students_phone_number" class="java.lang.String"/>
+	<field name="students_address" class="java.lang.String"/>
+	<field name="categories_id" class="java.lang.Integer"/>
+	<field name="categories_name" class="java.lang.String"/>
+	<field name="borrowings_id" class="java.lang.Integer"/>
+	<field name="borrowings_student_nisn" class="java.lang.String"/>
+	<field name="borrowings_borrowed_at" class="java.time.LocalDateTime"/>
+	<field name="borrowings_returned_at" class="java.time.LocalDateTime"/>
+	<field name="borrowings_status" class="java.lang.String"/>
+	<field name="borrowings_created_at" class="java.sql.Timestamp"/>
+	<field name="borrowing_details_id" class="java.lang.Integer"/>
+	<field name="borrowing_details_borrowing_id" class="java.lang.Integer"/>
+	<field name="borrowing_details_book_code" class="java.lang.String"/>
+	<field name="books_id" class="java.lang.Integer"/>
+	<field name="books_title" class="java.lang.String"/>
+	<field name="books_author" class="java.lang.String"/>
+	<field name="books_publisher" class="java.lang.String"/>
+	<field name="books_origin" class="java.lang.String"/>
+	<field name="books_total_pages" class="java.lang.Integer"/>
+	<field name="books_cover" class="java.lang.Object"/>
+	<field name="books_category_id" class="java.lang.Integer"/>
+	<field name="book_items_code" class="java.lang.String"/>
+	<field name="book_items_book_id" class="java.lang.Integer"/>
+	<field name="book_items_status" class="java.lang.String"/>
+	<field name="admins_id" class="java.lang.Integer"/>
+	<field name="admins_name" class="java.lang.String"/>
+	<field name="admins_username" class="java.lang.String"/>
+	<field name="admins_password" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="78" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="65" width="261" height="13" uuid="e6cf2436-b49e-4b60-b79a-732ee31c016e"/>
+				<textElement>
+					<font fontName="Berlin Sans FB"/>
+				</textElement>
+				<text><![CDATA[============================================================================]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="2" width="261" height="13" uuid="f6a815bb-7f45-4c61-bbd8-071a57221096"/>
+				<textElement>
+					<font fontName="Berlin Sans FB"/>
+				</textElement>
+				<text><![CDATA[============================================================================]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="-20" y="0" width="302" height="78" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="03198ff8-29fe-41cc-9da2-98154d5ce954"/>
+			</rectangle>
+			<image>
+				<reportElement x="5" y="15" width="66" height="50" uuid="fa624852-9a67-44c0-884d-38e58fcdb439"/>
+				<imageExpression><![CDATA["C:\\Users\\11 64\\OneDrive\\Documents\\NetBeansProjects\\library\\src\\image\\logoo.jpeg"]]></imageExpression>
+			</image>
+			<rectangle radius="15">
+				<reportElement x="71" y="15" width="191" height="50" forecolor="#0F79FF" backcolor="#0033CC" uuid="20132aaa-301f-4401-9e54-0c3d9bff97ac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="-20" y="-20" width="302" height="20" forecolor="#FFFFFF" backcolor="#0033CC" uuid="c7c153d6-3e9b-48a7-9f85-9415cacee4e7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="90" y="20" width="100" height="20" forecolor="#FFFFFF" backcolor="#0F79FF" uuid="a7fe7b04-0a42-4a0c-8cac-1ff29c19faef"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDULIBRARY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="91" y="40" width="172" height="20" forecolor="#FFFFFF" backcolor="#0F79FF" uuid="de1b9b29-1b87-43ab-9527-f00ab690f465"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BUKTI PEMINJAMAN BUKU]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-14" y="-16" width="117" height="18" forecolor="#FFFFFF" backcolor="#0F79FF" uuid="a0d584ac-badd-49be-a364-624ffb4f5ad1"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SMK Negeri 4 Bojonegoro]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="13" width="262" height="14" forecolor="#0F79FF" backcolor="#0F79FF" uuid="152a86ee-1eec-437b-b149-1a19452177a3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="13" width="172" height="14" forecolor="#FFFFFF" uuid="dfeced88-f407-4904-8c47-4de25dcae860"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data Peminjaman]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="320" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="99" height="15" uuid="16f304e6-ea37-40d9-9e1f-1721d42495ac"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Peminjaman      : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="103" y="0" width="157" height="15" uuid="a666b4f7-c432-4eec-871a-301c16647a86"/>
+				<textFieldExpression><![CDATA[$F{borrowings_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="15" width="99" height="15" uuid="f2fc9c5a-1c2a-4e65-94ca-7fb084c4f973"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dicetak pada          :]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="103" y="15" width="157" height="15" uuid="6b903e28-573b-49ab-8779-d434c6e5ca35"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="64" width="81" height="15" uuid="70f22625-aa89-4a7e-a0fc-823436ba44d8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NISN Siswa      : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="86" y="65" width="174" height="15" uuid="60cc07b0-c47f-4cf6-8fc4-954371468dcb"/>
+				<textFieldExpression><![CDATA[$F{borrowings_student_nisn}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="80" width="174" height="15" uuid="0704a1a9-45c7-4997-adf2-1b540e125979"/>
+				<textFieldExpression><![CDATA[$F{students_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="80" width="81" height="15" uuid="87828724-9b3c-4986-83a3-0ece79ca96c7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Siswa     : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="95" width="129" height="15" uuid="6c299706-d204-484e-ac43-8a7afca2cce0"/>
+				<textFieldExpression><![CDATA[$F{students_classroom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-2" y="95" width="83" height="15" uuid="a46b0d89-7dab-4d7a-9178-9dd2b8d69813"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Kelas                :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="30" width="99" height="15" uuid="8f48acb0-9e3a-4580-aa7e-ec52a29a2bc1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status                     :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="44" width="172" height="20" forecolor="#FFFFFF" uuid="f9297d9c-7260-4d36-9f17-392dc6228845"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="50" width="262" height="14" forecolor="#0F79FF" backcolor="#0F79FF" uuid="bd2235dd-fd33-4c6d-b405-b279a4cffc95"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="110" width="172" height="20" forecolor="#FFFFFF" uuid="5461b64a-5921-43fc-9e51-bcf0511927d9"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data Siswa]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="119" width="261" height="14" forecolor="#0F79FF" backcolor="#0F79FF" uuid="f4f2dc13-1bfa-4c2d-8fb5-dbbb2c2354e2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="119" width="172" height="20" forecolor="#FFFFFF" uuid="3f99f30a-4b36-4fb6-acb8-3861b9b0459a"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data Buku]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement x="2" y="144" width="258" height="13" forecolor="#FFFFFF" backcolor="#99CCFF" uuid="1d9fbe54-2eaf-42f9-9601-bd63048fd7e3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="144" width="62" height="13" uuid="d672c60d-950f-4d55-903b-588b76649d2a"/>
+				<textElement>
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kode Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="144" width="62" height="13" uuid="d75456d1-75df-48fc-a8f0-b450449116eb"/>
+				<textElement>
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Judul Buku]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="144" width="62" height="13" uuid="f0199473-7f97-49c0-9b46-ca24c9a46faf"/>
+				<textElement>
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Penulis]]></text>
+			</staticText>
+			<line>
+				<reportElement x="193" y="278" width="1" height="16" uuid="b1627e23-4a60-48ea-b7d4-9b6cbaf30199"/>
+			</line>
+			<line>
+				<reportElement x="123" y="80" width="1" height="16" uuid="759b6102-b967-46a8-b921-680966bd6b4e"/>
+			</line>
+			<line>
+				<reportElement x="160" y="80" width="1" height="16" uuid="9edf782f-2cf5-4e31-9e28-5f5e46cd1ee3"/>
+			</line>
+			<line>
+				<reportElement x="165" y="253" width="81" height="1" uuid="a8a7e5c8-f284-45bc-bfdf-baa6f132ea85"/>
+			</line>
+			<rectangle radius="10">
+				<reportElement x="103" y="31" width="80" height="13" forecolor="#3399FF" backcolor="#99CCFF" uuid="714c28ee-8708-4ef2-bacc-7c3e3c537d6f"/>
+			</rectangle>
+			<textField>
+				<reportElement x="116" y="30" width="100" height="14" uuid="25d619d5-6a8d-4d1a-98a2-0230011684ca"/>
+				<textFieldExpression><![CDATA[$F{borrowings_status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="82" y="1" width="91" height="15" uuid="857a416a-a063-4e70-821e-6d12c5a24bf9"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{books_title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="180" y="0" width="74" height="15" uuid="7b8ed0ba-9c38-4333-ae31-ac64331ba9a1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{books_author}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="72" y="1" width="1" height="15" forecolor="#666666" uuid="31742d6d-ad42-473f-8890-2017ba9bf255"/>
+			</line>
+			<textField>
+				<reportElement positionType="Float" x="5" y="1" width="65" height="15" uuid="5fadcd4a-00bc-4402-b9b7-68e1925dbca7"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{book_items_code}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="1" width="1" height="15" forecolor="#666666" uuid="ccf25d20-55be-4a20-9abc-4143bc27ad8b"/>
+			</line>
+			<line>
+				<reportElement x="257" y="0" width="1" height="17" forecolor="#666666" uuid="484bb20f-a7e8-445d-9547-fae29ffbebd9"/>
+			</line>
+			<line>
+				<reportElement x="5" y="16" width="252" height="1" forecolor="#666666" uuid="b64e9d41-fa58-494b-821c-28154fb3dd6d"/>
+			</line>
+			<line>
+				<reportElement x="175" y="0" width="1" height="15" forecolor="#666666" uuid="f10d8acd-6804-43bc-8315-f3e3f5676731"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="19" width="97" height="15" uuid="9534301a-81ce-4eb1-8a10-4b2d18eb2761"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Pinjam  :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="103" y="19" width="159" height="15" uuid="0f523907-6a01-4fc9-aab3-da65bee8272a"/>
+				<textFieldExpression><![CDATA[$F{borrowings_borrowed_at}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="34" width="100" height="15" uuid="ef1e9e26-df84-4af3-9897-bed8618e72fd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Batas Kembali    :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="103" y="34" width="159" height="15" uuid="f55e507c-2ed9-4eb9-ace8-122e3a1381de"/>
+				<textFieldExpression><![CDATA[$F{borrowings_returned_at}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="52" width="261" height="15" uuid="23312b51-bf04-4c9c-903b-2894a0596e70"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Catatan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="82" width="145" height="15" forecolor="#3399FF" uuid="2e624de6-10ac-471d-9145-105b9e02e62f"/>
+				<text><![CDATA[- Buku rusak/hilang wajib ganti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="67" width="188" height="15" forecolor="#FF0000" uuid="f6b10f8f-062a-4466-8a46-37f60b07c6fe"/>
+				<text><![CDATA[- Denda Rp5.000 / hari untuk setiap buku]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="5" width="262" height="14" forecolor="#0F79FF" backcolor="#0F79FF" uuid="d6e12e43-977b-4770-b05a-f1f0d3670a26"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="5" width="90" height="14" forecolor="#FFFFFF" uuid="5f86e50a-3c9d-4ff2-ad0f-1aa692506f4b"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informasi Peminjaman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="113" width="237" height="15" forecolor="#000000" uuid="332ba1f8-63d0-435e-a4a5-299dbc17f34d"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Terima kasih telah berkunjung ke EduLibrary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="125" width="239" height="15" forecolor="#000000" uuid="591a5ac0-b9ac-4633-97e0-18776e9629ee"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Jangan lupa untuk mengembalikan buku tepat waktu.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="107" width="302" height="1" forecolor="#0033CC" uuid="983cb7e1-2b8f-41ea-83fa-30816bce6f98"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

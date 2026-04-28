@@ -1,0 +1,54 @@
+CREATE TABLE students (
+    nisn VARCHAR(11) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    classroom VARCHAR(50),
+    phone_number VARCHAR(20),
+    address TEXT
+);
+
+CREATE TABLE admins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    cover BLOB,
+    stock INT NOT NULL,
+    borrowed_times INT DEFAULT 0
+);
+
+CREATE TABLE borrowings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    student_nisn VARCHAR(11),
+    borrowed_at DATETIME,
+    returned_at DATETIME,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_nisn) REFERENCES students(nisn)
+);
+
+CREATE TABLE borrowing_details (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    borrowing_id INT,
+    book_id INT,
+    FOREIGN KEY (borrowing_id) REFERENCES borrowings(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
+);
+
+CREATE TABLE returns (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    borrowing_id INT(11) NOT NULL,
+    returned_at DATE NOT NULL,
+    charge INT UNSIGNED DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    CONSTRAINT fk_borrowing
+        FOREIGN KEY (borrowing_id) 
+        REFERENCES borrowings(id)
+);
