@@ -1,7 +1,5 @@
 # 📚 EduLibrary - Sistem Perpustakaan Berbasis Desktop
-
-Aplikasi perpustakaan berbasis desktop menggunakan Java NetBeans dan MySQL.  
-Project ini dibuat sebagai tugas UKKN.
+Aplikasi perpustakaan berbasis desktop yang dikembangkan menggunakan Java NetBeans dan MySQL untuk memberikan solusi modern dalam pengelolaan data perpustakaan. Sistem ini dirancang untuk mempermudah manajemen buku, anggota, transaksi peminjaman, pengembalian, serta penyajian laporan secara efisien dan terstruktur.
 
 ---
 
